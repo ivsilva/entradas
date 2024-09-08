@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem de Participantes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0d1ceca1;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .input-group form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 400px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 95%;
+        }
+        .button-group {
+            display: flex;
+            width: 100%;
+            max-width: 400px;
+            gap: 10px;
+            justify-content: space-between;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #0d1ceca1;
+            color: white;
+            cursor: pointer;
+            flex: 1;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0b1a9e;
+        }
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo ao Sistema </h1>
+        
+        <div class="input-group">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <input type="text" name="qtdPessoas" placeholder="Digite o Número">
+                <button type="submit" name="adicionar">Adicionar</button>
+            </form>
+            
+            <form method="POST" action="">
+                {% csrf_token %}
+                <input type="hidden" name="finalizar" value="finalizar">
+                <button type="submit">Finalizar Contagem</button>
+            </form>
+        </div>
+        
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+        
+        <p>Total: {{ total }} pessoas participaram do evento.</p>
+    </div>
+</body>
+</html>
